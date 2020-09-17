@@ -12,6 +12,7 @@ void StrCat(char *, char *);
 void StrCpy(char *, char *);
 void StrRev(char *);
 char *StrRightSub(char *,int);
+int StrCmp(char *,char *);
 
 int main()
 {
@@ -27,9 +28,22 @@ int main()
     pCpy=(char *)realloc(pCpy,2*StrLen(pName)*sizeof(char));
     StrCat(pCpy,pName);
     printf("Concats:%s,size:%d,mem:%p\n",pCpy,strlen(pCpy),pCpy);
-    char *strSubStr=StrRightSub(pCpy,3);
+    char *strSubStr=StrRightSub(pName,10);
     printf("SubStr:%s",strSubStr);
+    int ret=StrCmp(pName,pName);
+    printf("%s",(ret==0?"Same":"Not Same"));
     return 0;
+}
+int StrCmp(char *str1, char* str2)
+{
+    while(*str1==*str2)
+    {
+        if(*str1=='\0')
+            return 0;
+            str1++;
+            str2++;
+    }
+    return (*str1-*str2);
 }
 char *StrRightSub(char *pName,int n)
 {
