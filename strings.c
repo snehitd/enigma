@@ -1,21 +1,21 @@
 /******************************************************************************
-
                             Online C Compiler.
                 Code, Compile, Run and Debug C program online.
 Write your code in this editor and press "Run" button to compile and execute it.
-
 *******************************************************************************/
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 int StrLen(char *);
 void StrCat(char *, char *);
 void StrCpy(char *, char *);
 void StrRev(char *);
+char *StrRightSub(char *,int);
 
 int main()
 {
-    char *pName,*pConCat, *pCpy;
+    char *pName, *pConCat, *pCpy;
     char name[]="SNEHIT";
     printf("%s\n",name);
     pName=name;
@@ -23,11 +23,26 @@ int main()
     printf("rev:%s\n",pName);
     pCpy=(char *)malloc(StrLen(pName)*sizeof(char));
     StrCpy(pCpy,pName);
-    printf("Copy:%s\n",pCpy);
+    printf("Copy:%s,size:%d,mem:%p\n",pCpy,strlen(pCpy),pCpy);
     pCpy=(char *)realloc(pCpy,2*StrLen(pName)*sizeof(char));
     StrCat(pCpy,pName);
-    printf("Concats:%s",pCpy);
+    printf("Concats:%s,size:%d,mem:%p\n",pCpy,strlen(pCpy),pCpy);
+    char *strSubStr=StrRightSub(pCpy,3);
+    printf("SubStr:%s",strSubStr);
     return 0;
+}
+char *StrRightSub(char *pName,int n)
+{
+    char *temp=(char *)malloc(n+1);
+    char *temp1=pName+StrLen(pName)-n;
+    int i=0;
+    while(i < n)
+    {
+        temp[i]=*temp1;
+        temp1++;
+        i++;
+    }
+    return temp;
 }
 void StrCpy(char *pCpy, char *name)
 {
