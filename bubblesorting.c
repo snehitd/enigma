@@ -1,6 +1,6 @@
 // Bubble sort : Swapping all the out of order elements
 //Efficiency - Less
-//Tme Complexity : O(n2) - Traditional, can be optimized to O(n) refer optBubSort()function below
+//Tme Complexity : O(n2) 
 //Space Complexity: O(1) 
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,25 +14,30 @@ void swap(int index,int* arr)
 
 // Complete the countSwaps function below.
 void countSwaps(int a_count, int* a) {
-    int len=a_count,swaps=0;
+    int len=a_count,swaps=0/*,counter=0*/;
     int i=0,j=0;
     for(i=0;i<len;i++)
     {
-        for(j=0;j<len-1;j++)
+        for(j=0;j<len-i-1;j++)
         {
             if(a[j] > a[j+1])
             {
                 swap(j,a);
                 swaps++;
             }
+            //counter++;
         }
     }
+    printf("Array is sorted in %d swaps.\n",swaps);
+    //printf("Array is sorted in %d swaps. :%d\n",swaps,counter);
+    printf("First Element: %d\n",a[0]);
+    printf("Last Element: %d\n",a[a_count-1]);
 }
 
 void optBubSort(int a_count, int* a)
 {
     bool isSorted=false;
-    int swaps=0;
+    int swaps=0/*,counter=0*/;
     int unSortedLen=a_count-1;
     while(!isSorted)
     {
@@ -45,10 +50,12 @@ void optBubSort(int a_count, int* a)
                 isSorted=false;
                 swaps++;
             }
+                    //counter++;
         }
         unSortedLen--;
     }
     printf("Array is sorted in %d swaps.\n",swaps);
+    //printf("Array is sorted in %d swaps. :%d\n",swaps,counter);
     printf("First Element: %d\n",a[0]);
     printf("Last Element: %d\n",a[a_count-1]);
 }
