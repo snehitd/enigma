@@ -17,7 +17,7 @@ void swap(int index,vector<int>& arr)
 void countSwaps(vector<int> a) {
     int swaps=0,i=0,j=0;
     int len = a.size();
-    for(i=0;i<len;i++)
+    for(i=0;i<len-1;i++)
     {
         for(j=0;j<len-i-1;j++)
         {
