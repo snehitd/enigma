@@ -31,6 +31,11 @@ void quickSort(int *arr,int low,int high)
         quickSort(arr,pi+1,high);
     }
 }
+int cmpFunc(const void *a, const void *b)
+{
+    return(*(int*)a - *(int*)b);  // > 0 -- b a
+                                  // < 0 -- a b
+}
 int main()
 {
     printf("enter length of array\n");
@@ -40,7 +45,8 @@ int main()
     printf("enter array\n");
     for(int i=0;i<len;i++)
         scanf("%d",&arr[i]);
-    quickSort(arr,0,len-1);
+    //quickSort(arr,0,len-1);
+    qsort(arr,len,sizeof(int),cmpFunc);
     printf("Sorted array is:\t");
     for(int i=0;i<len;i++)
         printf("%d\t",arr[i]);
